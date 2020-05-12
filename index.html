@@ -2,8 +2,15 @@
 <html>
 <body>
     <style>
+        body {
+            float: left;
+            font-family: "Lucida Console", Courier, monospace;
+        }
+        .container {
+            max-width: 100em;
+        }
         .question {
-            color: blue;
+            color: teal;
         }
         .answer {
             color: sandybrown;
@@ -12,20 +19,24 @@
             width: "30%";
         }
         .answer_link {
-            float: left;
         }
     </style>
 
 
     <h1>Hello World</h1>
-    <p>I'm hosted with GitHub Pages.</p>
+    <p>I'm hosted on GitHub Pages.</p>
 
-    <div class="question">What is the advantage ?</div>
-    <div class="answer">The advantage is that ...
-        <img class="answer_image" 
-        src="https://avatars3.githubusercontent.com/u/201231?s=460&v=4"
-        >
-        <a class="answer_link" href="https://avatars3.githubusercontent.com/u/201231?s=460&v=4">Symbol</a>
+    <div class="container">
+
+        <div class="question">What is the advantage ?</div>
+        <div class="answer">The advantage is that ...
+        <div class="answer_image">
+            <img  src="https://avatars3.githubusercontent.com/u/201231?s=460&v=4">
+        </div>
+            <a class="answer_link" href="https://www.google.com">Google</a>
+        </div>
+
     </div>
+
 </body>
 </html>
