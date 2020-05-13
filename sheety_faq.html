@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Products</title>
+  <style>
+  body {
+    font-family: sans-serif;
+  }
+  
+  .faqs {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: block; 
+    grid-template-columns:  1fr 1fr 1fr;
+  }
+  
+  .faqs li {
+    margin: 1em;
+  }
+  
+  .faqs li img {
+    width: 100%;
+  }
+</style>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.12/handlebars.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+
+  //json data for handlebar template
+  var data = [
+    {
+      question: "What is the max current for a PVD200 ?",
+      answer: "The max current is 2 A for each section",
+    },
+    {
+      question: "What is the max current for a CED400 ?",
+      answer: "The max current is 1.5 A for each section",
+    }
+  ] ;
+  
+  //handlebar template html
+  var template = $('#item-template').html();
+  
+  //handlebar's compile method returns special function which can be used to get final html
+  var compiledCode = Handlebars.compile(template);
+  
+  //json data is passed top compiled code and result will be html
+  var result = compiledCode(data);
+  
+  //compiled html can be rendered in document
+  $("#faqs").html(result);
+
+})
+</script>
+
+<script id="item-template" type="text/x-handlebars-template">
+<ul class="faqs">
+	{{#each this}}
+		<li>
+		  <h3>{{question}}</h3>
+		  <p>{{answer}}</p>
+		</li>
+	{{/each}}
+</ul>
+</script>
+
+</head>
+<body>
+  <div id="faqs">Loading products...</div>
+</body>
+</html>
