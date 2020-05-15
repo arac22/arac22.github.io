@@ -1,0 +1,71 @@
+<!-- Fantastic API but last mantained in 2015 (sic) -->
+
+<!DOCTYPE html>
+<html>
+    <head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<title>Sheetrock Demo</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'>
+    </head>
+<body>
+    <style>
+    </style>
+
+
+
+    <!-- <table id="statistics" class="table table-condensed table-striped"></table> -->
+    <table id="switch-hitters" class="table table-condensed table-striped"></table>
+
+    <h4>NL Home Run Leaders</h4>
+    <ol id="hr">
+    <script id="hr-template" type="text/x-handlebars-template">
+        <li>
+        <strong>{{cells.Cognome}} {{cells.Nome}}</strong>,
+        {{cells.Matricola}}, {{cells.Email}}
+        </li>
+    </script>
+    </ol>
+
+    <!-- Load jQuery and Sheetrock from CDNJS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sheetrock/1.1.4/dist/sheetrock.min.js"></script>
+    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+            // Define spreadsheet URL.
+            //var mySpreadsheet = 'https://docs.google.com/spreadsheets/d/1qT1LyvoAcb0HTsi2rHBltBVpUBumAUzT__rhMvrz5Rk/edit#gid=0';
+            var mySpreadsheet = 'https://docs.google.com/spreadsheets/d/1MmbKzPwdbP-fDxVcVxGgCXPTXFN2HgjKEbTwnEvIbRg/edit#gid=0';
+
+            // Load an entire worksheet.
+            // $('#statistics').sheetrock({
+            //     url: mySpreadsheet
+            // });
+
+            // Load top ten switch hitters.
+            $('#switch-hitters').sheetrock({
+                url: mySpreadsheet,
+                query: "select A,B,C,D,E,L where E = 'Yes' order by A asc",
+                fetchSize: 10
+            });
+
+            // Compile the Handlebars template for HR leaders.
+            var HRTemplate = Handlebars.compile($('#hr-template').html());
+
+            // Load top five HR leaders.
+            $('#hr').sheetrock({
+                url: mySpreadsheet,
+                query: "select A,B,C,D order by A asc",
+                fetchSize: 5,
+                rowTemplate: HRTemplate
+            });
+
+
+        })
+    </script>
+</body>
+</html>
