@@ -2,32 +2,33 @@
 
 <!DOCTYPE html>
 <html>
-    <head>
-		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-		<meta charset="utf-8">
-		<title>Sheetrock Demo</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-        <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'>
-    </head>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>Sheetrock Demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'>
+</head>
 <body>
     <style>
     </style>
 
-
+    <h4>Table</h4>
     <!-- <table id="statistics" class="table table-condensed table-striped"></table> -->
     <table id="switch-hitters" class="table table-responsive table-condensed table-striped"></table>
 
-    <h4>NL Home Run Leaders</h4>
-    <ol id="hr">
+    <h4>List</h4>
+    <ol id="hr" class="list-group">
     <script id="hr-template" type="text/x-handlebars-template">
-        <li>
+        <a href="accordion_faq.html" class="list-group-item list-group-item-action">
         <strong>{{cells.Cognome}} {{cells.Nome}}</strong>,
         {{cells.Matricola}}, {{cells.Email}}
-        </li>
+        </a>
     </script>
     </ol>
 
     <!-- Load jQuery and Sheetrock from CDNJS -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sheetrock/1.1.4/dist/sheetrock.min.js"></script>
     <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js'></script>
@@ -49,7 +50,7 @@
             $('#switch-hitters').sheetrock({
                 url: mySpreadsheet,
                 query: "select A,B,C,D,E,L where E = 'Yes' order by A asc",
-                fetchSize: 10
+                fetchSize: 5
             });
 
             // Compile the Handlebars template for HR leaders.
